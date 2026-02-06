@@ -69,3 +69,22 @@ footer {
   font-size: 15px;
   line-height: 1.6;
 }
+
+/* ===== GitHub Button ===== */
+
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: white;
+  background: #24292e;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #000;
+}
+
