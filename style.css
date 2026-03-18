@@ -17,9 +17,19 @@ h1 {
   font-size: 42px;
 }
 
+/* ===== Section + Animation ===== */
+
 section {
   margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
 }
+
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.4s; }
+section:nth-child(4) { animation-delay: 0.6s; }
+section:nth-child(5) { animation-delay: 0.8s; }
 
 h2 {
   border-bottom: 2px solid #eee;
@@ -49,12 +59,12 @@ footer {
   padding: 22px;
   border-radius: 14px;
   background: #ffffff;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 .card h3 {
@@ -81,9 +91,19 @@ footer {
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 14px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
   background: #000;
+  transform: scale(1.03);
+}
+
+/* ===== Animation Keyframes ===== */
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
