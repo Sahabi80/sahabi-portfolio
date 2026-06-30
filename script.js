@@ -1,30 +1,71 @@
 // ===============================
-// Dark Mode Toggle
+// Portfolio v2.0
+// Dark Mode
 // ===============================
 
 const themeToggle = document.getElementById("theme-toggle");
+const body = document.body;
+const icon = themeToggle.querySelector("i");
 
-// Check saved theme
-const savedTheme = localStorage.getItem("theme");
-
-if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-    themeToggle.textContent = "☀️";
-} else {
-    themeToggle.textContent = "🌙";
+// Load saved theme
+if (localStorage.getItem("theme") === "light") {
+    enableLightMode();
 }
 
 // Toggle theme
 themeToggle.addEventListener("click", () => {
 
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "☀️";
+    if (body.classList.contains("light-mode")) {
+        disableLightMode();
     } else {
-        localStorage.setItem("theme", "light");
-        themeToggle.textContent = "🌙";
+        enableLightMode();
     }
 
+});
+
+// Enable Light Mode
+function enableLightMode() {
+
+    body.classList.add("light-mode");
+
+    icon.classList.remove("fa-moon");
+    icon.classList.add("fa-sun");
+
+    localStorage.setItem("theme", "light");
+
+}
+
+// Enable Dark Mode
+function disableLightMode() {
+
+    body.classList.remove("light-mode");
+
+    icon.classList.remove("fa-sun");
+    icon.classList.add("fa-moon");
+
+    localStorage.setItem("theme", "dark");
+
+}
+
+// ===============================
+// Smooth Fade Animation
+// ===============================
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll("section").forEach(section => {
+    section.classList.add("hidden");
+    observer.observe(section);
 });
