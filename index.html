@@ -1,130 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sahabi Khan | Portfolio</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sahabi Khan | Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- Dark Mode Toggle -->
-<button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+    <!-- ================= NAVBAR ================= -->
 
-<header>
+    <header>
 
-    <img src="profile.png" alt="Sahabi Khan" class="profile-photo">
+        <nav class="navbar">
 
-    <p class="greeting">👋 Hi, I'm</p>
+            <div class="logo">
+                &lt;SK/&gt;
+            </div>
 
-    <h1>Sahabi Khan</h1>
+            <ul class="nav-links">
 
-    <h3 class="subtitle">
-        Computer Science Student | Android Developer
-    </h3>
+                <li><a href="#">Home</a></li>
 
-    <p class="hero-text">
-        I enjoy building Android applications and solving real-world problems
-        through practical software projects. My current focus is creating
-        secure, reliable, and user-friendly applications while continuously
-        expanding my skills.
-    </p>
+                <li><a href="#about">About</a></li>
 
-</header>
+                <li><a href="#skills">Skills</a></li>
 
-<section>
+                <li><a href="#projects">Projects</a></li>
 
-<h2>Projects</h2>
+                <li><a href="#contact">Contact</a></li>
 
-<div class="projects">
+            </ul>
 
-<div class="card">
-<h3>SecureShield</h3>
-<p>
-Android application that protects sensitive media files through manual and
-panic-triggered encryption using Java, Firebase Authentication, and shake
-detection.
-</p>
-<a href="https://github.com/Sahabi80/SecureShield"
-target="_blank"
-class="btn">
-View on GitHub →
-</a>
-</div>
+            <button id="theme-toggle">
 
-<div class="card">
-<h3>Bank Application</h3>
-<p>
-Java OOP based system for managing user accounts,
-transactions, and banking operations.
-</p>
-<a href="https://github.com/Sahabi80/Bank_Application/tree/main/OOP_Project"
-target="_blank"
-class="btn">
-View on GitHub →
-</a>
-</div>
+                <i class="fa-solid fa-moon"></i>
 
-<div class="card">
-<h3>Pizza Hut Management System</h3>
-<p>
-Database-driven system built with MySQL and XAMPP for handling
-orders, customers, and inventory.
-</p>
-<a href="https://github.com/Sahabi80/Pizza-Hut-Management-System"
-target="_blank"
-class="btn">
-View on GitHub →
-</a>
-</div>
+            </button>
 
-<div class="card">
-<h3>Expense Tracker Mobile App</h3>
-<p>
-Flutter app to track daily expenses and visualize spending habits.
-</p>
-<a href="https://github.com/Sahabi80/expense-tracker-flutter"
-target="_blank"
-class="btn">
-View on GitHub →
-</a>
-</div>
+        </nav>
 
-</div>
+    </header>
 
-</section>
+    <!-- ================= HERO ================= -->
 
-<section>
+    <section class="hero">
 
-<h2>Skills</h2>
+        <div class="hero-left">
 
-<ul>
-<li>Python</li>
-<li>C++</li>
-<li>Java</li>
-<li>Flutter</li>
-<li>HTML &amp; CSS</li>
-<li>Database (MySQL)</li>
-</ul>
+            <span class="hello">
 
-</section>
+                👋 Hello, I'm
 
-<section>
+            </span>
 
-<h2>Contact</h2>
+            <h1>
 
-<p>Email: sahabikhan2019@outlook.com</p>
-<p>GitHub: github.com/Sahabi80</p>
+                Sahabi Khan
 
-</section>
+            </h1>
 
-<footer>
+            <h2>
 
-<p>© 2026 Sahabi Khan</p>
+                Computer Science Student
 
-</footer>
+            </h2>
 
-<script src="script.js"></script>
+            <h3>
+
+                Android Developer • Java Developer
+
+            </h3>
+
+            <p>
+
+                Building secure, practical, and user-friendly software solutions
+                with Java, Android, Firebase, and modern development tools.
+
+            </p>
+
+            <div class="buttons">
+
+                <a href="#" class="btn primary">
+
+                    <i class="fa-solid fa-file-arrow-down"></i>
+
+                    Resume
+
+                </a>
+
+                <a href="https://github.com/Sahabi80"
+
+                    target="_blank"
+
+                    class="btn secondary">
+
+                    <i class="fa-brands fa-github"></i>
+
+                    GitHub
+
+                </a>
+
+                <a href="#"
+
+                    class="btn secondary">
+
+                    <i class="fa-brands fa-linkedin"></i>
+
+                    LinkedIn
+
+                </a>
+
+                <a href="mailto:sahabikhan2019@outlook.com"
+
+                    class="btn secondary">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    Email
+
+                </a>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <h2>4+</h2>
+
+                    <span>Projects</span>
+
+                </div>
+
+                <div class="stat">
+
+                    <h2>10+</h2>
+
+                    <span>Technologies</span>
+
+                </div>
+
+                <div class="stat">
+
+                    <h2>2027</h2>
+
+                    <span>Graduation</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <img src="profile.png"
+
+                alt="Sahabi Khan">
+
+        </div>
+
+    </section>
+
+    <!-- ================= PLACEHOLDERS ================= -->
+
+    <section id="about">
+
+        <h2>About</h2>
+
+    </section>
+
+    <section id="skills">
+
+        <h2>Skills</h2>
+
+    </section>
+
+    <section id="projects">
+
+        <h2>Projects</h2>
+
+    </section>
+
+    <section id="contact">
+
+        <h2>Contact</h2>
+
+    </section>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
