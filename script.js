@@ -69,3 +69,70 @@ document.querySelectorAll("section").forEach(section => {
     section.classList.add("hidden");
     observer.observe(section);
 });
+
+
+// ===============================
+// SecureShield Screenshot Slider
+// ===============================
+
+const screenshots = [
+
+    "assets/screenshots/secureshield-sign-in.png",
+    "assets/screenshots/secureshield-sign-up.png",
+    "assets/screenshots/secureshield-dashboard.png",
+    "assets/screenshots/secureshield-pin-auth.png",
+    "assets/screenshots/secureshield-recovery.png",
+    "assets/screenshots/secureshield-splash-screen.png"
+
+];
+
+let currentIndex = 0;
+
+const phoneImage = document.getElementById("phone-image");
+const prevBtn = document.getElementById("prevSlide");
+const nextBtn = document.getElementById("nextSlide");
+
+if (phoneImage && prevBtn && nextBtn) {
+
+    function updateScreenshot() {
+
+        phoneImage.style.opacity = "0";
+
+        setTimeout(() => {
+
+            phoneImage.src = screenshots[currentIndex];
+            phoneImage.style.opacity = "1";
+
+        }, 150);
+
+    }
+
+    nextBtn.addEventListener("click", () => {
+
+        currentIndex++;
+
+        if (currentIndex >= screenshots.length) {
+
+            currentIndex = 0;
+
+        }
+
+        updateScreenshot();
+
+    });
+
+    prevBtn.addEventListener("click", () => {
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+
+            currentIndex = screenshots.length - 1;
+
+        }
+
+        updateScreenshot();
+
+    });
+
+}
