@@ -425,3 +425,41 @@ display:none;
 }
 
 }
+
+
+/* =====================================
+        Light Mode
+===================================== */
+
+body{
+    transition: background .35s ease,color .35s ease;
+}
+
+.light-mode{
+
+    --bg:#F8FAFC;
+    --card:#FFFFFF;
+    --text:#0F172A;
+    --secondary:#475569;
+    --border:#CBD5E1;
+
+}
+
+/* =====================================
+        Scroll Animation
+===================================== */
+
+.hidden{
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s ease;
+
+}
+
+.show{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
