@@ -893,8 +893,6 @@ body{
 
     display:flex;
 
-    flex-direction:column;
-
 }
 
 .project-card:hover{
@@ -998,8 +996,6 @@ body{
     align-items:center;
 
     gap:10px;
-
-    margin-top:auto;
 
     color:#fff;
 
