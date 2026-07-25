@@ -670,6 +670,10 @@ body.light-mode{
 
     margin-bottom:30px;
 
+    text-align:justify;
+
+    text-justify:inter-word;
+
 }
 
 
