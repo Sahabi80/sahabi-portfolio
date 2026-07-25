@@ -545,6 +545,10 @@ body.light-mode{
     line-height:1.8;
 
     font-size:18px;
+   
+    text-align:justify;
+   
+    text-justify:inter-word;
 
 }
 
