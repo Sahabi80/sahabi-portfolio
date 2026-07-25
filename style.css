@@ -1262,6 +1262,10 @@ body.light-mode{
 
     font-size:15px;
 
+    text-align:justify;
+
+    text-justify:inter-word;
+
 }
 
 @media(max-width:768px){
