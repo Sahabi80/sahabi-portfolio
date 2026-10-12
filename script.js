@@ -1,11 +1,12 @@
-/* ===============================
-   Portfolio v2.1
-   Theme, Animations, Slider & Ghost
-   =============================== */
 
-// ===============================
+/* =====================================
+   Portfolio v2.2
+   Theme, Animations, Slider & Ghost
+   ===================================== */
+
+// =====================================
 // Dark / Light Mode
-// ===============================
+// =====================================
 
 const themeToggle = document.getElementById("theme-toggle");
 const body = document.body;
@@ -48,9 +49,9 @@ if (themeToggle) {
     });
 }
 
-// ===============================
+// =====================================
 // Smooth Fade Animation
-// ===============================
+// =====================================
 
 if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -69,9 +70,9 @@ if ("IntersectionObserver" in window) {
     });
 }
 
-// ===============================
+// =====================================
 // SecureShield Screenshot Slider
-// ===============================
+// =====================================
 
 const screenshots = [
     "assets/screenshots/secureshield-sign-in.png",
@@ -93,9 +94,6 @@ if (phoneImage && prevBtn && nextBtn) {
         phoneImage.style.opacity = "0";
 
         setTimeout(() => {
-            currentIndex =
-                (currentIndex + screenshots.length) % screenshots.length;
-
             phoneImage.src = screenshots[currentIndex];
             phoneImage.style.opacity = "1";
         }, 150);
@@ -113,20 +111,21 @@ if (phoneImage && prevBtn && nextBtn) {
     });
 }
 
-// ===============================
-// Floating Purple Ghost Mascot
-// ===============================
+// =====================================
+// Purple Ghost Mascot
+// =====================================
 
 (function createGhostMascot() {
-    // Prevent duplicate mascots
     if (document.getElementById("ghost-mascot")) return;
 
-    // Respect accessibility preferences
     const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    // Inject mascot styles
+    // ---------------------------------
+    // Ghost CSS
+    // ---------------------------------
+
     const style = document.createElement("style");
 
     style.textContent = `
@@ -137,8 +136,10 @@ if (phoneImage && prevBtn && nextBtn) {
             width: 100px;
             height: 120px;
             z-index: 999;
-            pointer-events: none;
+            pointer-events: auto;
             user-select: none;
+            cursor: pointer;
+            touch-action: manipulation;
             transform-origin: 50% 75%;
             animation: ghost-float 3s ease-in-out infinite;
             filter: drop-shadow(0 8px 18px rgba(139,92,246,.22));
@@ -152,10 +153,7 @@ if (phoneImage && prevBtn && nextBtn) {
             height: 76px;
             border-radius: 48% 48% 38% 38%;
             background: linear-gradient(
-                145deg,
-                #d8b4fe 0%,
-                #a855f7 48%,
-                #7c3aed 100%
+                145deg, #d8b4fe 0%, #a855f7 48%, #7c3aed 100%
             );
             box-shadow:
                 inset -7px -7px 12px rgba(76,29,149,.22),
@@ -172,17 +170,12 @@ if (phoneImage && prevBtn && nextBtn) {
             left: 9px;
             width: 82px;
             height: 52px;
-            background: linear-gradient(
-                180deg,
-                #a855f7,
-                #7c3aed
-            );
+            background: linear-gradient(180deg, #a855f7, #7c3aed);
             border-radius: 15px 15px 8px 8px;
             clip-path: polygon(
                 0 0, 100% 0, 100% 88%,
-                83% 100%, 67% 87%,
-                50% 100%, 33% 87%,
-                16% 100%, 0 88%
+                83% 100%, 67% 87%, 50% 100%,
+                33% 87%, 16% 100%, 0 88%
             );
             z-index: 1;
         }
@@ -260,12 +253,64 @@ if (phoneImage && prevBtn && nextBtn) {
             transform: rotate(-15deg);
         }
 
-        #ghost-mascot.blinking .ghost-eye {
-            animation: ghost-blink .18s ease-in-out;
-        }
-
         #ghost-mascot:hover {
             filter: drop-shadow(0 8px 24px rgba(139,92,246,.45));
+        }
+
+        /* Speech bubble */
+
+        #ghost-mascot .ghost-speech {
+            position: absolute;
+            right: 92px;
+            top: 0;
+            min-width: 125px;
+            max-width: 190px;
+            padding: 10px 13px;
+            border: 1px solid rgba(168,85,247,.4);
+            border-radius: 14px 14px 4px 14px;
+            background: #fff;
+            color: #35204d;
+            font: 600 13px/1.4 Arial, sans-serif;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(124,58,237,.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px) scale(.92);
+            pointer-events: none;
+            transition: opacity .2s, transform .2s, visibility .2s;
+            z-index: 5;
+        }
+
+        #ghost-mascot .ghost-speech.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Reaction animations */
+
+        #ghost-mascot.reaction-jump .ghost-head,
+        #ghost-mascot.reaction-jump .ghost-body {
+            animation: ghost-jump .45s ease;
+        }
+
+        #ghost-mascot.reaction-surprise .ghost-head {
+            animation: ghost-surprise .5s ease;
+        }
+
+        #ghost-mascot.reaction-laugh .ghost-head {
+            animation: ghost-laugh .55s ease;
+        }
+
+        #ghost-mascot.reaction-laugh .ghost-mouth {
+            width: 15px;
+            height: 10px;
+            background: #4c1d95;
+            border-radius: 4px 4px 50% 50%;
+        }
+
+        #ghost-mascot.blinking .ghost-eye {
+            animation: ghost-blink .18s ease-in-out;
         }
 
         @keyframes ghost-float {
@@ -283,12 +328,64 @@ if (phoneImage && prevBtn && nextBtn) {
             45%, 55% { transform: scaleY(.08); }
         }
 
+        @keyframes ghost-jump {
+            0%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-22px) rotate(-5deg); }
+            70% { transform: translateY(0) rotate(5deg); }
+        }
+
+        @keyframes ghost-surprise {
+            0%, 100% { transform: scale(1) rotate(0); }
+            40% { transform: scale(1.15) rotate(7deg); }
+            70% { transform: scale(.96) rotate(-5deg); }
+        }
+
+        @keyframes ghost-laugh {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-9deg) translateY(-3px); }
+            50% { transform: rotate(9deg); }
+            75% { transform: rotate(-6deg) translateY(-2px); }
+        }
+
+        /* Sound toggle */
+
+        #ghost-sound-toggle {
+            position: fixed;
+            right: 25px;
+            bottom: 145px;
+            z-index: 1000;
+            border: 1px solid rgba(168,85,247,.5);
+            border-radius: 20px;
+            padding: 7px 10px;
+            background: #1e293b;
+            color: white;
+            font: 12px Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        #ghost-sound-toggle:focus-visible,
+        #ghost-mascot:focus-visible {
+            outline: 2px solid #c084fc;
+            outline-offset: 4px;
+        }
+
         @media (max-width: 576px) {
             #ghost-mascot {
                 right: 10px;
                 bottom: 12px;
-                transform: scale(.78);
                 transform-origin: bottom right;
+            }
+
+            #ghost-mascot .ghost-speech {
+                right: 72px;
+                max-width: 145px;
+                min-width: 105px;
+                font-size: 12px;
+            }
+
+            #ghost-sound-toggle {
+                right: 12px;
+                bottom: 112px;
             }
         }
 
@@ -302,19 +399,36 @@ if (phoneImage && prevBtn && nextBtn) {
             #ghost-mascot .ghost-pupil {
                 transition: none;
             }
+
+            #ghost-mascot.reaction-jump .ghost-head,
+            #ghost-mascot.reaction-jump .ghost-body,
+            #ghost-mascot.reaction-surprise .ghost-head,
+            #ghost-mascot.reaction-laugh .ghost-head {
+                animation: none;
+            }
         }
     `;
 
     document.head.appendChild(style);
 
-    // Create mascot elements
+    // ---------------------------------
+    // Create Ghost HTML
+    // ---------------------------------
+
     const ghost = document.createElement("div");
+
     ghost.id = "ghost-mascot";
-    ghost.setAttribute("role", "img");
-    ghost.setAttribute("aria-label", "Purple ghost mascot");
+    ghost.setAttribute("role", "button");
+    ghost.setAttribute("tabindex", "0");
+    ghost.setAttribute(
+        "aria-label",
+        "Interactive purple ghost. Click to play."
+    );
 
     ghost.innerHTML = `
+        <div class="ghost-speech" aria-live="polite"></div>
         <div class="ghost-shadow"></div>
+
         <div class="ghost-head">
             <div class="ghost-eyes">
                 <div class="ghost-eye">
@@ -326,6 +440,7 @@ if (phoneImage && prevBtn && nextBtn) {
             </div>
             <div class="ghost-mouth"></div>
         </div>
+
         <div class="ghost-body">
             <div class="ghost-wave"></div>
         </div>
@@ -335,10 +450,16 @@ if (phoneImage && prevBtn && nextBtn) {
 
     const head = ghost.querySelector(".ghost-head");
     const pupils = ghost.querySelectorAll(".ghost-pupil");
-    const eyes = ghost.querySelectorAll(".ghost-eye");
+    const speech = ghost.querySelector(".ghost-speech");
 
-    // Make eyes follow the cursor and gently turn the head
-    if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    // ---------------------------------
+    // Eye Tracking & Head Movement
+    // ---------------------------------
+
+    if (
+        !reducedMotion &&
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    ) {
         document.addEventListener("pointermove", (event) => {
             const rect = head.getBoundingClientRect();
 
@@ -359,15 +480,25 @@ if (phoneImage && prevBtn && nextBtn) {
                     `translate(${pupilX}px, ${pupilY}px)`;
             });
 
-            const tilt = Math.max(-10, Math.min(10, dx / 35));
-            const nod = Math.max(-5, Math.min(5, dy / 55));
+            // Do not override a reaction animation.
+            if (
+                !ghost.classList.contains("reaction-jump") &&
+                !ghost.classList.contains("reaction-surprise") &&
+                !ghost.classList.contains("reaction-laugh")
+            ) {
+                const tilt = Math.max(-10, Math.min(10, dx / 35));
+                const nod = Math.max(-5, Math.min(5, dy / 55));
 
-            head.style.transform =
-                `rotate(${tilt}deg) translateY(${nod}px)`;
+                head.style.transform =
+                    `rotate(${tilt}deg) translateY(${nod}px)`;
+            }
         }, { passive: true });
     }
 
-    // Random natural blinking
+    // ---------------------------------
+    // Natural Blinking
+    // ---------------------------------
+
     function blink() {
         if (!document.hidden && !reducedMotion) {
             ghost.classList.add("blinking");
@@ -377,11 +508,194 @@ if (phoneImage && prevBtn && nextBtn) {
             }, 180);
         }
 
-        const nextBlink = 2200 + Math.random() * 3000;
-        setTimeout(blink, nextBlink);
+        setTimeout(blink, 2200 + Math.random() * 3000);
     }
 
     if (!reducedMotion) {
         setTimeout(blink, 1800);
     }
+
+    // =================================
+    // Talking Tom Style Interactions
+    // =================================
+
+    const messages = [
+        "Hey there! 👋",
+        "Looking good! ✨",
+        "Nice to meet you! 💜",
+        "You're awesome! 😎",
+        "Hello, friend! 😊",
+        "Welcome to my home! 🏠"
+    ];
+
+    let clickTimer = null;
+    let clickCount = 0;
+    let reactionTimer = null;
+    let speechTimer = null;
+
+    function showSpeech(message) {
+        speech.textContent = message;
+        speech.classList.add("visible");
+
+        clearTimeout(speechTimer);
+
+        speechTimer = setTimeout(() => {
+            speech.classList.remove("visible");
+        }, 2300);
+    }
+
+    // ---------------------------------
+    // Optional Sound Effects
+    // ---------------------------------
+
+    let soundEnabled = false;
+    let audioContext = null;
+
+    const soundToggle = document.createElement("button");
+
+    soundToggle.id = "ghost-sound-toggle";
+    soundToggle.type = "button";
+    soundToggle.textContent = "🔇 Sound off";
+    soundToggle.setAttribute("aria-pressed", "false");
+    soundToggle.setAttribute("aria-label", "Toggle ghost sound effects");
+
+    document.body.appendChild(soundToggle);
+
+    soundToggle.addEventListener("click", () => {
+        soundEnabled = !soundEnabled;
+
+        soundToggle.textContent = soundEnabled
+            ? "🔊 Sound on"
+            : "🔇 Sound off";
+
+        soundToggle.setAttribute(
+            "aria-pressed",
+            String(soundEnabled)
+        );
+
+        if (soundEnabled && !audioContext) {
+            const AudioContextClass =
+                window.AudioContext || window.webkitAudioContext;
+
+            if (AudioContextClass) {
+                audioContext = new AudioContextClass();
+            }
+        }
+
+        if (soundEnabled && audioContext) {
+            audioContext.resume().catch(() => {});
+        }
+    });
+
+    function playTinySound(type) {
+        if (!soundEnabled || !audioContext) return;
+
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+
+            const frequencies = {
+                happy: 660,
+                surprise: 880,
+                laugh: 520
+            };
+
+            oscillator.type = "sine";
+            oscillator.frequency.value = frequencies[type] || 660;
+
+            const now = audioContext.currentTime;
+
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.07, now + 0.025);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+
+            oscillator.connect(gain);
+            gain.connect(audioContext.destination);
+
+            oscillator.start(now);
+            oscillator.stop(now + 0.17);
+        } catch (error) {
+            // Sound is optional. Visual reactions remain available.
+        }
+    }
+
+    // ---------------------------------
+    // Reaction Controller
+    // ---------------------------------
+
+    function reactToGhost(type) {
+        clearTimeout(reactionTimer);
+
+        ghost.classList.remove(
+            "reaction-jump",
+            "reaction-surprise",
+            "reaction-laugh"
+        );
+
+        // Restart CSS animation.
+        void ghost.offsetWidth;
+
+        if (type === "surprise") {
+            ghost.classList.add("reaction-surprise");
+            showSpeech("Whoa! 😲");
+        } else if (type === "laugh") {
+            ghost.classList.add("reaction-laugh");
+            showSpeech("Haha! That tickles! 😂");
+        } else {
+            ghost.classList.add("reaction-jump");
+
+            const message =
+                messages[Math.floor(Math.random() * messages.length)];
+
+            showSpeech(message);
+        }
+
+        playTinySound(type);
+
+        reactionTimer = setTimeout(() => {
+            ghost.classList.remove(
+                "reaction-jump",
+                "reaction-surprise",
+                "reaction-laugh"
+            );
+        }, 650);
+    }
+
+    // Single click / repeated clicks.
+    function handleGhostClick() {
+        clickCount++;
+
+        clearTimeout(clickTimer);
+
+        clickTimer = setTimeout(() => {
+            if (clickCount >= 3) {
+                reactToGhost("laugh");
+            } else {
+                reactToGhost("happy");
+            }
+
+            clickCount = 0;
+        }, 260);
+    }
+
+    ghost.addEventListener("click", handleGhostClick);
+
+    // Double click.
+    ghost.addEventListener("dblclick", (event) => {
+        event.preventDefault();
+
+        clearTimeout(clickTimer);
+        clickCount = 0;
+
+        reactToGhost("surprise");
+    });
+
+    // Keyboard accessibility.
+    ghost.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            handleGhostClick();
+        }
+    });
+
 })();
