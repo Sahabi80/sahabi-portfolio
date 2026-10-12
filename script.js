@@ -1,4 +1,3 @@
-
 /* ===============================
    Portfolio v2.1
    Theme, Animations, Slider & Ghost
