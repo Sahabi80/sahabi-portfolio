@@ -699,3 +699,55 @@ if (phoneImage && prevBtn && nextBtn) {
     });
 
 })();
+
+/* ==============================
+   Neon Cursor + Purple Trail
+   ============================== */
+
+(function initNeonCursor() {
+    const finePointer = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+    if (!finePointer || window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches) {
+        return;
+    }
+
+    const cursor = document.createElement("div");
+    cursor.className = "neon-cursor";
+    document.body.appendChild(cursor);
+
+    let lastTrailTime = 0;
+
+    document.addEventListener("pointermove", (event) => {
+        cursor.style.left = `${event.clientX}px`;
+        cursor.style.top = `${event.clientY}px`;
+
+        const now = performance.now();
+
+        // Limit particles to keep the effect lightweight.
+        if (now - lastTrailTime < 35) return;
+        lastTrailTime = now;
+
+        const particle = document.createElement("div");
+        particle.className = "cursor-trail";
+        particle.style.left = `${event.clientX}px`;
+        particle.style.top = `${event.clientY}px`;
+
+        document.body.appendChild(particle);
+
+        particle.addEventListener("animationend", () => {
+            particle.remove();
+        }, { once: true });
+    }, { passive: true });
+
+    document.addEventListener("pointerdown", () => {
+        cursor.style.transform = "translate(-50%, -50%) scale(0.7)";
+
+        setTimeout(() => {
+            cursor.style.transform = "translate(-50%, -50%) scale(1)";
+        }, 120);
+    });
+})();
